@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TeleGhost</string>
+
+    <!-- System resources -->
+    <string name="hide">Hide</string>
+    <string name="error_unexpected">Unexpected error</string>
+    <string name="quit_toast_msg">Press back again to close application</string>
+
+    <string name="accessibility_service_description">
+        This is necessary for automatic opening of Red Envelopes
+    </string>
+    <string name="accessibility_service_name">RedEnvelopeService</string>
+    <string name="accessibility_service_id">
+        com.vittach.telegramlistener.develop/com.vittach.teleghost.services.AutoTouchService
+    </string>
+
+    <string name="help_service_description">
+        Please ALLOW Acessibility permissions\nAfter that click Back button until you return
+    </string>
+</resources>

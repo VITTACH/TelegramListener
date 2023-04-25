@@ -1,0 +1,107 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlinx-serialization"
+    id "kotlin-kapt"
+}
+
+//CI
+apply from: '../ci.gradle'
+
+android {
+    buildToolsVersion projectBuild.buildToolsVersion
+    compileSdkVersion projectBuild.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.vittach.telegramlistener"
+        minSdkVersion projectBuild.minSdkVersion
+        targetSdkVersion projectBuild.targetSdkVersion
+        // versionCode is set by ci.gradle
+        versionName "1.1.0"
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86'
+        }
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix "-develop"
+            applicationIdSuffix ".develop"
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    flavorDimensions "default"
+
+    configurations {
+        devDebugImplementation
+    }
+
+    compileOptions {
+        sourceCompatibility projectBuild.compileCompatibilityVersion
+        targetCompatibility projectBuild.compileCompatibilityVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs += "-Xuse-experimental=kotlin.Experimental"
+        freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        freeCompilerArgs += "-Xuse-experimental=org.koin.core.KoinExperimentalAPI"
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':libtd')
+
+    implementation(libs.lifecycleExt)
+
+    // Project dependencies
+    implementation(libs.coreKtx)
+    implementation(libs.fragmentKtx)
+    implementation(libs.constraintLayout)
+    implementation(libs.material)
+    implementation(libs.appcompat)
+
+    // DI
+    implementation(libs.koin.android)
+
+    // Kotlin
+    implementation(libs.kotlinStd)
+
+    // Lottie
+    implementation(libs.lottie)
+
+    // Glide
+    implementation(libs.glide)
+    kapt(libs.glideCompiler)
+
+    // Serialization
+    implementation(libs.serialization.json)
+
+    // ViewBinding delegates
+    implementation(libs.bundles.viewBindingDelegates)
+
+    // Coroutines
+    implementation(libs.coroutines)
+    implementation(libs.coroutinesAndroid)
+
+    // Runtime permission
+    implementation(libs.coroutinespermission)
+
+    // Network
+    implementation(libs.retrofit.core)
+
+    // Timber logger
+    implementation(libs.timber)
+
+    // libp7zip
+    implementation(libs.libp7zip)
+
+    // Sesame
+    implementation(libs.bundles.sesame)
+}

@@ -1,0 +1,76 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+android.defaultConfig.versionCode = getBuildNumber()
+
+static Integer getBuildNumber() {
+    if (System.env.BUILD_NUMBER != null) {
+        return Integer.parseInt(System.env.BUILD_NUMBER)
+    }
+    return 1
+}
+
+task printVersionName {
+    doLast {
+        String versionName = "Undefined"
+        if (project.hasProperty('flavorNameProp') && flavorNameProp != null) {
+            android.applicationVariants.all { variant ->
+                if (flavorNameProp == variant.flavorName) {
+                    versionName = variant.mergedFlavor.versionName + variant.mergedFlavor.versionNameSuffix
+                }
+            }
+        } else {
+            versionName = android.defaultConfig.versionName + (android.defaultConfig.versionNameSuffix ?: "")
+        }
+        print("versionName \"" + versionName + "\"")
+    }
+}
+
+task installPreCommitHook() {
+    doFirst {
+        def suffix = "linux"
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            suffix = "windows"
+        }
+        def file = new File(rootProject.rootDir, "pre-commit")
+        def downloadUrl = "https://ci.getmobileup.com/ci/android/githooks/$suffix/pre-commit.sh"
+        new URL(downloadUrl).withInputStream { i ->
+            file.withOutputStream { it << i }
+        }
+    }
+    doLast {
+        copy {
+            from new File(rootProject.rootDir, "pre-commit")
+            into { new File(rootProject.rootDir, ".git/hooks") }
+            fileMode 0777
+        }
+        delete {
+            delete "${rootProject.rootDir.path}/pre-commit"
+        }
+    }
+}
+
+// run as ./gradlew installPrepareCommitMsgHook -PissuePrefix=...
+task installPrepareCommitMsgHook() {
+    doFirst {
+        def suffix = "linux"
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            suffix = "windows"
+        }
+        def file = new File(rootProject.rootDir, "prepare-commit-msg")
+        def downloadUrl = "https://ci.getmobileup.com/ci/android/githooks/$suffix/prepare-commit-msg.sh"
+        new URL(downloadUrl).withInputStream { i ->
+            file.withOutputStream { it << i }
+        }
+    }
+    doLast {
+        copy {
+            from new File(rootProject.rootDir, "prepare-commit-msg")
+            into { new File(rootProject.rootDir, ".git/hooks") }
+            filter { line -> line.replaceAll("ISSUE_PREFIX=\"\"", "ISSUE_PREFIX=$issuePrefix") }
+            fileMode 0777
+        }
+        delete {
+            delete "${rootProject.rootDir.path}/prepare-commit-msg"
+        }
+    }
+}

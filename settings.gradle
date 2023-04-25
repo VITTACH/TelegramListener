@@ -1,0 +1,112 @@
+rootProject.name = "telegram-listener"
+include ':app', ':libtd'
+
+enableFeaturePreview('VERSION_CATALOGS')
+
+dependencyResolutionManagement {
+
+    versionCatalogs {
+        libs {
+            // Kotlin
+            version('kotlin', '1.5.31')
+            alias('kotlinStd').to('org.jetbrains.kotlin', 'kotlin-stdlib').versionRef('kotlin')
+            alias('kotlinGradle').to('org.jetbrains.kotlin', 'kotlin-gradle-plugin').versionRef('kotlin')
+
+            // Android
+            alias('android-plugin').to('com.android.tools.build', 'gradle').version('7.0.3')
+            alias('android-desugar').to('com.android.tools', 'desugar_jdk_libs').version('1.1.5')
+
+            // Serialization
+            alias('serialization-json').to('org.jetbrains.kotlinx', 'kotlinx-serialization-json').version('1.3.0')
+            alias('serialization-plugin').to('org.jetbrains.kotlin', 'kotlin-serialization').versionRef('kotlin')
+
+            // DI
+            alias('koin-android').to('io.insert-koin', 'koin-android').version('3.1.2')
+
+            // Gradle
+            version('gradle', '7.0.1')
+            alias('gradle').to('com.android.tools.build', 'gradle').versionRef('gradle')
+
+            // Service
+            version('lifecycle', '2.0.0')
+            alias('lifecycleExt').to('androidx.lifecycle', 'lifecycle-extensions')
+                    .versionRef('lifecycle')
+
+            // Android
+            version('constraintLayout', '2.0.4')
+            alias('constraintLayout').to('androidx.constraintlayout', 'constraintlayout').versionRef('constraintLayout')
+
+            version('appcompat', '1.4.1')
+            alias('appcompat').to('androidx.appcompat', 'appcompat').versionRef('appcompat')
+
+            version('coreKtx', '1.7.0')
+            alias('coreKtx').to('androidx.core', 'core-ktx').versionRef('coreKtx')
+
+            version('fragmentKtx', '1.3.3')
+            alias('fragmentKtx').to('androidx.fragment', 'fragment-ktx').versionRef('fragmentKtx')
+
+            version('material', '1.4.0-alpha02')
+            alias('material').to('com.google.android.material', 'material').versionRef('material')
+
+            version('lottie', '3.4.2')
+            alias('lottie').to('com.airbnb.android', 'lottie').versionRef('lottie')
+
+            version('glide', '4.12.0')
+            alias('glide').to('com.github.bumptech.glide', 'glide').versionRef('glide')
+            alias('glideCompiler').to('com.github.bumptech.glide', 'compiler').versionRef('glide')
+
+            // Coroutines
+            version('coroutinesAndroid', '1.4.2')
+            alias('coroutinesAndroid').to('org.jetbrains.kotlinx', 'kotlinx-coroutines-android')
+                    .versionRef('coroutinesAndroid')
+
+            version('coroutines', '1.4.1')
+            alias('coroutines').to('org.jetbrains.kotlinx', 'kotlinx-coroutines-core')
+                    .versionRef('coroutines')
+
+            version('coroutinespermission', '2.0.3')
+            alias('coroutinespermission').to('com.sagar', 'coroutinespermission')
+                    .versionRef('coroutinespermission')
+
+
+            version('viewBindingDelegates', '1.4.4')
+            alias('viewBindingProperyDelegates')
+                    .to('com.github.kirich1409', 'viewbindingpropertydelegate')
+                    .versionRef('viewBindingDelegates')
+            alias('viewBindingProperyDelegatesNoReflection')
+                    .to('com.github.kirich1409', 'viewbindingpropertydelegate-noreflection')
+                    .versionRef('viewBindingDelegates')
+            bundle('viewBindingDelegates', ['viewBindingProperyDelegates', 'viewBindingProperyDelegatesNoReflection'])
+
+            // Network
+            version('retrofit', '2.9.0')
+            alias('retrofit-core').to('com.squareup.retrofit2', 'retrofit').versionRef('retrofit')
+
+            alias('retrofit-converter-serialization')
+                    .to('com.jakewharton.retrofit', 'retrofit2-kotlinx-serialization-converter')
+                    .version('0.8.0')
+
+            version('okhttp', '4.9.2')
+            alias('okhttp-logging').to('com.squareup.okhttp3', 'logging-interceptor').versionRef('okhttp')
+
+            // Logger
+            version('timber', '4.7.1')
+            alias('timber').to('com.jakewharton.timber', 'timber').versionRef('timber')
+
+            // libp7zip
+            version('libp7zip', '1.7.0')
+            alias('libp7zip').to('com.hzy', 'libp7zip').versionRef('libp7zip')
+
+            version('sesame', '1.1.0-beta1')
+            alias('sesameProperty').to('com.github.aartikov', 'sesame-property').versionRef('sesame')
+            alias('sesameDialog').to('com.github.aartikov', 'sesame-dialog').versionRef('sesame')
+            alias('sesameNavigation').to('com.github.aartikov', 'sesame-navigation').versionRef('sesame')
+            alias('sesameLoading').to('com.github.aartikov', 'sesame-loading').versionRef('sesame')
+            alias('sesameLoop').to('com.github.aartikov', 'sesame-loop').versionRef('sesame')
+            alias('sesameActivable').to('com.github.aartikov', 'sesame-activable').versionRef('sesame')
+            alias('sesameForm').to('com.github.aartikov', 'sesame-form').versionRef('sesame')
+            bundle('sesame', ['sesameProperty', 'sesameDialog', 'sesameNavigation', 'sesameLoading',
+                              'sesameLoop', 'sesameActivable', 'sesameForm'])
+        }
+    }
+}

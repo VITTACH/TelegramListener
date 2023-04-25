@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Chatex" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+
+        <item name="statusBarColor">@color/green_a</item>
+        <item name="navbarBackgroundColor">@color/gray_a</item>
+        <item name="transparentColor">@android:color/transparent</item>
+
+        <item name="android:navigationBarColor">?navbarBackgroundColor</item>
+        <item name="android:statusBarColor">?statusBarColor</item>
+    </style>
+
+    <style name="Theme.Chatex.Transparent" parent="Theme.Chatex">
+        <item name="android:navigationBarColor">?transparentColor</item>
+        <item name="android:statusBarColor">?transparentColor</item>
+        <item name="android:windowBackground">?transparentColor</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="256dp"
+    android:fadeScrollbars="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/apiIdInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Api Id"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/apiHashInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Api Hash"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/startBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start service"/>
+
+        <EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone number"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/requestCodeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request code"/>
+
+        <EditText
+            android:id="@+id/codeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telegram code"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/sendCodeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send my code"/>
+
+        <Button
+            android:id="@+id/logOutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Logout"/>
+
+        <Button
+            android:id="@+id/record_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Control panel"/>
+
+        <Button
+            android:id="@+id/avatarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update avatar"/>
+
+    </LinearLayout>
+</ScrollView>
